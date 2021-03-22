@@ -1,5 +1,6 @@
 package com.project.trainee.tc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +17,7 @@ public class User implements UserDetails {
 
     @Id
     private String username;
+    @JsonIgnore
     private String password;
 
     public User(){

@@ -1,6 +1,7 @@
 package com.project.trainee.tc.config;
 
 import com.project.trainee.tc.filters.AuthenticationFilter;
+import com.project.trainee.tc.filters.AuthorizationFilter;
 import com.project.trainee.tc.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .addFilterBefore(new AuthenticationFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new AuthenticationFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
